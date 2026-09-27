@@ -9,7 +9,7 @@
 | B02 Broad category research | Complete | 100% |
 | B03 Initial competitor research | Complete | 100% |
 | B04 Product direction hypothesis | Complete | 100% |
-| B05 Audience selection | Not started | 0% |
+| B05 Audience selection | Complete | 100% |
 | B06 First SKU specification | Not started | 0% |
 | B07 Production pipeline | Not started | 0% |
 | B08 Asset creation | Not started | 0% |
@@ -24,5 +24,10 @@
 These percentages are based only on actual repository work and completed research. They are not automatic estimates.
 
 Current research conclusion:
-**Themed Creative Resource Packs** is the leading working direction, but the first customer niche is not yet frozen.
+**Digital Journaling / Scrapbooking** is the selected first audience.
+
+Current product direction:
+**Themed Digital Journaling / Scrapbook Resource Kit**.
+
+B06 is not started until the first SKU specification is actually completed and QA-checked.
 
