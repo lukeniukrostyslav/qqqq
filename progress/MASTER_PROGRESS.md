@@ -12,7 +12,7 @@
 | B05 Audience selection | Complete | 100% |
 | B06 First SKU specification | Complete | 100% |
 | B07 Production pipeline | Complete | 100% |
-| B08 Asset creation | In progress — journal pages + digital papers + ephemera + decorative PNG approved; 15 assets remain | 83.33% |
+| B08 Asset creation | In progress — 85/90 approved; 5 bonus assets remain | 94.44% |
 | B09 Product QA | Not started | 0% |
 | B10 Marketplace packaging | Not started | 0% |
 | B11 First commercial listing | Not started | 0% |
@@ -81,7 +81,8 @@ Approved concepts:
 - Digital Papers: 15/15
 - Ephemera: 20/20
 - Decorative PNG: 20/20
-- **Total: 75/90 = 83.33%**
+- Tags / Bookmarks: 10/10
+- **Total: 85/90 = 94.44%**
 
 Decorative PNG verification:
 - GitHub Actions run: `36340693552`
@@ -90,8 +91,28 @@ Decorative PNG verification:
 - Delivery commit: `12f2d77`
 
 Remaining B08 categories:
-- Tags / Bookmarks: 10
 - Bonus: 5
-- **Remaining: 15 concepts**
+- **Remaining: 5 concepts**
 
 B09 remains separate and is not started.
+
+
+## B08 current verification — 2026-09-27 — Tags / Bookmarks
+
+Approved concepts:
+- Tags / Bookmarks: 10/10
+- **Total B08 approved: 85/90 = 94.44%**
+
+GitHub Actions run: `36341227633`
+Conclusion: SUCCESS
+
+Technical QA:
+- 10/10 SVG masters passed XML preflight.
+- 5 tags: 2400×3600 JPG, RGB, 300 DPI.
+- 5 bookmarks: 2400×6000 JPG, RGB, 300 DPI.
+- Repository-level raster QA passed.
+- Delivery folder verified: exactly 10 JPG files.
+
+Remaining B08:
+- Bonus: 5 concepts.
+- B09 remains separate and is not started.
