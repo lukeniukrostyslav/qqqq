@@ -10,6 +10,7 @@ on:
       - 'proof/B08_DP_MASTERS/**'
       - 'proof/B08_EP_MASTERS/**'
       - 'proof/B08_PNG_MASTERS/**'
+      - 'proof/B08_TB_MASTERS/**'
       - '.github/workflows/b08-journal-raster-delivery.yml'
 
 permissions:
@@ -127,6 +128,19 @@ jobs:
           done
           test "$count" -eq 20
 
+      - name: Validate tags and bookmark masters
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          masters = sorted(Path("proof/B08_TB_MASTERS").glob("SL_TB_*.svg"))
+          if len(masters) != 10:
+              raise SystemExit(f"Expected 10 tag/bookmark masters, found {len(masters)}")
+          for p in masters:
+              ET.parse(p)
+          print("B08 tags/bookmarks master preflight PASS: 10/10 valid SVG files")
+          PY
+
       - name: Render decorative PNGs with transparency
         shell: bash
         run: |
@@ -140,6 +154,39 @@ jobs:
             rsvg-convert --width=3600 --height=3600 --output="delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG/${base}.png" "$svg"
           done
           test "$count" -eq 20
+
+      - name: Render tags and bookmarks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/b08_tb_png
+          count=0
+          for svg in proof/B08_TB_MASTERS/SL_TB_*.svg; do
+            base="$(basename "$svg" .svg)"
+            count=$((count + 1))
+            if [[ "$base" =~ SL_TB_00[1-5]_ ]]; then
+              rsvg-convert --width=2400 --height=3600 --output="/tmp/b08_tb_png/\${base}.png" "$svg"
+            else
+              rsvg-convert --width=2400 --height=6000 --output="/tmp/b08_tb_png/\${base}.png" "$svg"
+            fi
+          done
+          test "$count" -eq 10
+
+      - name: Convert tags and bookmarks to JPG and set 300 DPI metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          src=Path("/tmp/b08_tb_png")
+          out=Path("delivery/SECRET_LIBRARY_KIT/05_TAGS_BOOKMARKS")
+          out.mkdir(parents=True,exist_ok=True)
+          for p in sorted(src.glob("*.png")):
+              im=Image.open(p).convert("RGB")
+              n=int(p.stem.split("_")[2])
+              expected=(2400,3600) if n <= 5 else (2400,6000)
+              if im.size != expected: raise SystemExit(f"Unexpected size: {p} -> {im.size}, expected {expected}")
+              im.save(out/p.with_suffix(".jpg").name,"JPEG",quality=92,optimize=True,progressive=True,dpi=(300,300),subsampling=0)
+          PY
 
       - name: Convert journal pages to JPG and set 300 DPI metadata
         run: |
@@ -229,7 +276,18 @@ jobs:
               lo, hi = im.getchannel("A").getextrema()
               if lo != 0 or hi == 0: raise SystemExit(f"{p}: expected transparent canvas with non-empty artwork")
               if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
-          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs + 20 transparent ephemera PNGs + 20 decorative PNGs")
+          tb = sorted(Path("delivery/SECRET_LIBRARY_KIT/05_TAGS_BOOKMARKS").glob("*.jpg"))
+          if len(tb) != 10: raise SystemExit(f"Tags/bookmarks: expected 10 JPG files, found {len(tb)}")
+          for p in tb:
+              im=Image.open(p)
+              n=int(p.stem.split("_")[2])
+              expected=(2400,3600) if n <= 5 else (2400,6000)
+              if im.size != expected: raise SystemExit(f"{p}: wrong size {im.size}, expected {expected}")
+              if im.mode != "RGB": raise SystemExit(f"{p}: wrong mode {im.mode}")
+              dpi=im.info.get("dpi")
+              if not dpi or abs(dpi[0]-300)>1 or abs(dpi[1]-300)>1: raise SystemExit(f"{p}: wrong DPI {dpi}")
+              if len(p.name)>70: raise SystemExit(f"{p}: filename exceeds 70 characters")
+          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs + 20 transparent ephemera PNGs + 20 decorative PNGs + 10 tag/bookmark JPGs")
           PY
 
       - name: Upload verification artifact
@@ -243,7 +301,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS delivery/SECRET_LIBRARY_KIT/03_EPHEMERA delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG
+          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS delivery/SECRET_LIBRARY_KIT/03_EPHEMERA delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG delivery/SECRET_LIBRARY_KIT/05_TAGS_BOOKMARKS
           if git diff --cached --quiet; then
             echo "No binary changes to commit."
             exit 0
