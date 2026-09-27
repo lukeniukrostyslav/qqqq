@@ -29,7 +29,7 @@ No asset is counted merely because it is planned.
 
 ## Status legend
 
-Current proof status: **75 APPROVED assets / 90 planned**
+Current proof status: **85 APPROVED assets / 90 planned**
 
 - PLANNED — specification exists, asset not created.
 - DRAFT — first version created, not approved.
@@ -98,9 +98,19 @@ All must be original and non-branded.
 
 | ID range | Count | Status |
 |---|---:|---|
-| SL_TB_001–010 | 10 | PLANNED |
+| SL_TB_001–010 | 10 | APPROVED |
 
-Five tags + five bookmarks, with visual variants but no meaningless duplication.
+Five tags + five bookmarks:
+- SL_TB_001 Archive Tag
+- SL_TB_002 Private Tag
+- SL_TB_003 Research Tag
+- SL_TB_004 Bookplate Tag
+- SL_TB_005 Due Date Tag
+- SL_TB_006 Raven Bookmark
+- SL_TB_007 Key Bookmark
+- SL_TB_008 Quill Bookmark
+- SL_TB_009 Candle Bookmark
+- SL_TB_010 Library Index Bookmark
 
 ## Bonus
 
@@ -157,3 +167,18 @@ GitHub Actions run `36340693552` completed successfully.
 - Delivery commit: `12f2d77`.
 
 The decorative PNG batch is therefore APPROVED for B08 progress purposes.
+
+
+## B08 tags / bookmarks verification — 2026-09-27
+
+GitHub Actions run `36341227633` completed successfully.
+
+- 10/10 tag/bookmark SVG masters passed XML preflight.
+- 5 tags rendered at 2400×3600 JPG.
+- 5 bookmarks rendered at 2400×6000 JPG.
+- JPG conversion passed at 300 DPI, RGB.
+- Repository-level raster QA passed for the complete B08 raster set.
+- Delivery commit was created by the workflow after QA.
+- GitHub delivery folder `05_TAGS_BOOKMARKS` was independently verified to contain exactly 10 JPG files.
+
+The tag/bookmark batch is therefore **APPROVED** for B08 progress purposes.
