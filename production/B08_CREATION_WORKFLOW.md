@@ -18,6 +18,8 @@ B08 will be executed in this order:
 
 ## 1. Style proof
 
+**Style proof status: ACCEPTED on 2026-09-27 after rendered visual inspection.** Final asset files are still subject to individual QA.
+
 Before creating the full 90-item batch, create a small representative proof:
 - 1 journal page;
 - 1 digital paper;
