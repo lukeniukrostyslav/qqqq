@@ -66,3 +66,24 @@ Patreon официально подтверждает:
 
 Эти примеры использовались для определения моделей монетизации, а не для копирования контента.
 
+
+
+## B06 Theme validation — Secret Library / Dark Academia
+
+Checked 2026-09-27.
+
+- Secret Library Junk Journal Kit (SecretHelper): 97 listing reviews; shop shown with 31k sales and 4.7k reviews. Product uses old books, secret passages, raven illustrations, ephemera, tags and bookmark.
+- Grungy Dark Academia Junk Journal (InkandPageJournals): 30 listing reviews; seller shop shown with 125.7k sales and 15.8k reviews.
+- Dark Academia 137-page kit (JunkJournalPrintable): 137 pages; current listing is low-priced and competes heavily on volume.
+- Cursed Library Junk Journal Kit (TheWildSunflower1233): buyers specifically mention print quality, versatility and purchasing multiple related kits; seller shop shown with 45.2k sales.
+- Librarian's Cabinet Junk Journal Kit: recent reviews praise detail, thematic consistency and quantity of images.
+
+Key lesson:
+Theme demand exists, but the low-price/large-volume segment is crowded. SKU 001 therefore uses a curated 90-asset target rather than competing on hundreds/thousands of pages.
+
+Sources:
+- https://www.etsy.com/listing/1545073193/secret-library-junk-journal-kit
+- https://www.etsy.com/listing/1591941075/grungy-dark-academia-junk-journal
+- https://www.etsy.com/listing/4473168119/dark-academia-junk-journal-kit-137-pages
+- https://www.etsy.com/listing/1887450413/cursed-library-junk-journal-kit
+- https://www.etsy.com/listing/4513481752/librarians-cabinet-junk-journal-kit-dark
