@@ -167,7 +167,7 @@ jobs:
             if [[ "$base" =~ SL_TB_00[1-5]_ ]]; then
               rsvg-convert --width=2400 --height=3600 --output="/tmp/b08_tb_png/${base}.png" "$svg"
             else
-              rsvg-convert --width=2400 --height=6000 --output="/tmp/b08_tb_png/\${base}.png" "$svg"
+              rsvg-convert --width=2400 --height=6000 --output="/tmp/b08_tb_png/${base}.png" "$svg"
             fi
           done
           test "$count" -eq 10
