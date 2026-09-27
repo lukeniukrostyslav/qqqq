@@ -9,6 +9,7 @@ on:
       - 'proof/B08_JP_MASTERS/**'
       - 'proof/B08_DP_MASTERS/**'
       - 'proof/B08_EP_MASTERS/**'
+      - 'proof/B08_PNG_MASTERS/**'
       - '.github/workflows/b08-journal-raster-delivery.yml'
 
 permissions:
@@ -66,6 +67,19 @@ jobs:
           print("B08 ephemera master preflight PASS: 20/20 valid SVG files")
           PY
 
+      - name: Validate decorative PNG masters
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          masters = sorted(Path("proof/B08_PNG_MASTERS").glob("SL_PNG_*.svg"))
+          if len(masters) != 20:
+              raise SystemExit(f"Expected 20 decorative PNG masters, found {len(masters)}")
+          for p in masters:
+              ET.parse(p)
+          print("B08 decorative PNG master preflight PASS: 20/20 valid SVG files")
+          PY
+
       - name: Render US Letter and A4
         shell: bash
         run: |
@@ -110,6 +124,20 @@ jobs:
             count=$((count + 1))
             echo "Rendering $base"
             rsvg-convert --width=3600 --height=2400 --output="delivery/SECRET_LIBRARY_KIT/03_EPHEMERA/${base}.png" "$svg"
+          done
+          test "$count" -eq 20
+
+      - name: Render decorative PNGs with transparency
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG
+          count=0
+          for svg in proof/B08_PNG_MASTERS/SL_PNG_*.svg; do
+            base="$(basename "$svg" .svg)"
+            count=$((count + 1))
+            echo "Rendering $base"
+            rsvg-convert --width=3600 --height=3600 --output="delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG/${base}.png" "$svg"
           done
           test "$count" -eq 20
 
@@ -191,7 +219,17 @@ jobs:
               lo, hi = im.getchannel("A").getextrema()
               if lo != 0 or hi == 0: raise SystemExit(f"{p}: expected transparent canvas with non-empty artwork")
               if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
-          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs + 20 transparent ephemera PNGs")
+          png = sorted(Path("delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG").glob("*.png"))
+          if len(png) != 20:
+              raise SystemExit(f"Decorative PNG: expected 20 files, found {len(png)}")
+          for p in png:
+              im = Image.open(p)
+              if im.size != (3600, 3600): raise SystemExit(f"{p}: wrong size {im.size}")
+              if im.mode not in ("RGBA", "LA"): raise SystemExit(f"{p}: transparency channel missing, mode={im.mode}")
+              lo, hi = im.getchannel("A").getextrema()
+              if lo != 0 or hi == 0: raise SystemExit(f"{p}: expected transparent canvas with non-empty artwork")
+              if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
+          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs + 20 transparent ephemera PNGs + 20 decorative PNGs")
           PY
 
       - name: Upload verification artifact
@@ -205,12 +243,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS delivery/SECRET_LIBRARY_KIT/03_EPHEMERA
+          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS delivery/SECRET_LIBRARY_KIT/03_EPHEMERA delivery/SECRET_LIBRARY_KIT/04_DECORATIVE_PNG
           if git diff --cached --quiet; then
             echo "No binary changes to commit."
             exit 0
           fi
-          git commit -m "chore(B08): generate journal, digital paper, and ephemera delivery"
+          git commit -m "chore(B08): generate journal, digital paper, ephemera, and decorative PNG delivery"
           git fetch origin main
           git rebase origin/main
           git push
