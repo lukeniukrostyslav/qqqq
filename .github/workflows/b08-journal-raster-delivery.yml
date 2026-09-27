@@ -1,4 +1,4 @@
-name: B08 Journal Raster Delivery
+name: B08 Asset Raster Delivery
 # B08 deterministic delivery verification
 
 on:
@@ -8,6 +8,7 @@ on:
     paths:
       - 'proof/B08_JP_MASTERS/**'
       - 'proof/B08_DP_MASTERS/**'
+      - 'proof/B08_EP_MASTERS/**'
       - '.github/workflows/b08-journal-raster-delivery.yml'
 
 permissions:
@@ -52,6 +53,19 @@ jobs:
           print("B08 digital paper master preflight PASS: 15/15 valid SVG files")
           PY
 
+      - name: Validate ephemera masters
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          masters = sorted(Path("proof/B08_EP_MASTERS").glob("SL_EP_*.svg"))
+          if len(masters) != 20:
+              raise SystemExit(f"Expected 20 ephemera masters, found {len(masters)}")
+          for p in masters:
+              ET.parse(p)
+          print("B08 ephemera master preflight PASS: 20/20 valid SVG files")
+          PY
+
       - name: Render US Letter and A4
         shell: bash
         run: |
@@ -84,6 +98,20 @@ jobs:
             rsvg-convert --width=3600 --height=3600 --background-color='#E9E0CA' --output="/tmp/b08_dp_png/${base}.png" "$svg"
           done
           test "$count" -eq 15
+
+      - name: Render ephemera PNGs with transparency
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p delivery/SECRET_LIBRARY_KIT/03_EPHEMERA
+          count=0
+          for svg in proof/B08_EP_MASTERS/SL_EP_*.svg; do
+            base="$(basename "$svg" .svg)"
+            count=$((count + 1))
+            echo "Rendering $base"
+            rsvg-convert --width=3600 --height=2400 --output="delivery/SECRET_LIBRARY_KIT/03_EPHEMERA/${base}.png" "$svg"
+          done
+          test "$count" -eq 20
 
       - name: Convert journal pages to JPG and set 300 DPI metadata
         run: |
@@ -153,13 +181,23 @@ jobs:
               dpi = im.info.get("dpi")
               if not dpi or abs(dpi[0]-300) > 1 or abs(dpi[1]-300) > 1: raise SystemExit(f"{p}: wrong DPI {dpi}")
               if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
-          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs")
+          ep = sorted(Path("delivery/SECRET_LIBRARY_KIT/03_EPHEMERA").glob("*.png"))
+          if len(ep) != 20:
+              raise SystemExit(f"Ephemera: expected 20 PNG files, found {len(ep)}")
+          for p in ep:
+              im = Image.open(p)
+              if im.size != (3600, 2400): raise SystemExit(f"{p}: wrong size {im.size}")
+              if im.mode not in ("RGBA", "LA"): raise SystemExit(f"{p}: transparency channel missing, mode={im.mode}")
+              lo, hi = im.getchannel("A").getextrema()
+              if lo != 0 or hi == 0: raise SystemExit(f"{p}: expected transparent canvas with non-empty artwork")
+              if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
+          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs + 20 transparent ephemera PNGs")
           PY
 
       - name: Upload verification artifact
         uses: actions/upload-artifact@v4
         with:
-          name: b08-journal-pages-verification
+          name: b08-asset-delivery-verification
           path: delivery/SECRET_LIBRARY_KIT
           if-no-files-found: error
 
@@ -167,12 +205,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS
+          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS delivery/SECRET_LIBRARY_KIT/03_EPHEMERA
           if git diff --cached --quiet; then
             echo "No binary changes to commit."
             exit 0
           fi
-          git commit -m "chore(B08): generate journal and digital paper JPGs"
+          git commit -m "chore(B08): generate journal, digital paper, and ephemera delivery"
           git fetch origin main
           git rebase origin/main
           git push
