@@ -10,7 +10,7 @@
 | B03 Initial competitor research | Complete | 100% |
 | B04 Product direction hypothesis | Complete | 100% |
 | B05 Audience selection | Complete | 100% |
-| B06 First SKU specification | Not started | 0% |
+| B06 First SKU specification | Complete | 100% |
 | B07 Production pipeline | Not started | 0% |
 | B08 Asset creation | Not started | 0% |
 | B09 Product QA | Not started | 0% |
