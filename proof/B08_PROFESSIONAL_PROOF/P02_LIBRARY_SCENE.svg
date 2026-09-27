@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2400" viewBox="0 0 3600 2400">
+<defs><linearGradient id="wall" x2="0" y2="1"><stop stop-color="#2d302c"/><stop offset=".65" stop-color="#1d211f"/><stop offset="1" stop-color="#121615"/></linearGradient><radialGradient id="warm"><stop stop-color="#f0c86e" stop-opacity=".72"/><stop offset="1" stop-color="#f0c86e" stop-opacity="0"/></radialGradient></defs>
+<rect width="3600" height="2400" fill="url(#wall)"/>
+<!-- shelves -->
+<g fill="#4a3023" stroke="#171411" stroke-width="14"><rect x="160" y="240" width="1120" height="1480"/><rect x="2320" y="240" width="1120" height="1480"/></g>
+<g fill="#5e3c2a"><path d="M210 360h1020v150H210zM210 650h1020v150H210zM210 940h1020v150H210zM210 1230h1020v150H210zM2370 360h1020v150H2370zM2370 650h1020v150H2370zM2370 940h1020v150H2370zM2370 1230h1020v150H2370z"/></g>
+<!-- books -->
+<g fill="#7b4039"><rect x="245" y="285" width="85" height="250"/><rect x="345" y="300" width="130" height="235"/><rect x="495" y="270" width="95" height="265"/><rect x="610" y="315" width="150" height="220"/><rect x="790" y="290" width="100" height="245"/><rect x="920" y="300" width="125" height="235"/><rect x="1080" y="280" width="100" height="255"/><rect x="2410" y="290" width="120" height="245"/><rect x="2550" y="305" width="85" height="230"/><rect x="2670" y="275" width="145" height="260"/><rect x="2840" y="300" width="100" height="235"/><rect x="2970" y="285" width="150" height="250"/><rect x="3150" y="300" width="95" height="235"/></g>
+<g fill="#29453f"><rect x="270" y="575" width="130" height="235"/><rect x="425" y="600" width="90" height="210"/><rect x="540" y="565" width="150" height="245"/><rect x="730" y="590" width="110" height="220"/><rect x="870" y="570" width="135" height="240"/><rect x="1035" y="600" width="105" height="210"/><rect x="2410" y="570" width="90" height="240"/><rect x="2525" y="590" width="140" height="220"/><rect x="2695" y="565" width="105" height="245"/><rect x="2830" y="600" width="150" height="210"/><rect x="3010" y="575" width="90" height="235"/><rect x="3130" y="590" width="135" height="220"/></g>
+<!-- central Gothic window -->
+<path d="M1450 1060V420Q1800 80 2150 420V1060Z" fill="#32443e" stroke="#0e1211" stroke-width="28"/><path d="M1800 170V1060M1450 620H2150" stroke="#161b19" stroke-width="24"/><path d="M1530 500Q1800 220 2070 500" fill="none" stroke="#b9a36f" stroke-width="10"/><circle cx="1800" cy="420" r="95" fill="#d5bf83" opacity=".45"/>
+<!-- desk and light -->
+<ellipse cx="1800" cy="1940" rx="900" ry="330" fill="#0b0e0d" opacity=".5"/><path d="M980 1710H2620L2460 2050H1140Z" fill="#543723" stroke="#23180f" stroke-width="22"/><path d="M1160 2040V2320M2450 2040V2320" stroke="#2a1b12" stroke-width="45"/>
+<ellipse cx="1800" cy="1700" rx="620" ry="520" fill="url(#warm)"/>
+<rect x="1770" y="1400" width="60" height="280" fill="#d7c08b"/><path d="M1800 1400q-45-70 0-145q45 75 0 145" fill="#d88a3d"/>
+<!-- desk objects -->
+<g stroke="#211711" stroke-width="12"><circle cx="1450" cy="1640" r="115" fill="#a98650"/><circle cx="1450" cy="1640" r="72" fill="none"/><path d="M1450 1520v240M1330 1640h240" stroke="#493520" stroke-width="8"/><rect x="1900" y="1570" width="250" height="80" fill="#d9c39a" transform="rotate(-8 1900 1570)"/><rect x="1980" y="1470" width="210" height="90" fill="#4b2f24" transform="rotate(9 1980 1470)"/><path d="M2160 1620q170-150 270-40" fill="none" stroke="#c6a875" stroke-width="18"/></g>
+<!-- foreground books -->
+<g stroke="#1b120d" stroke-width="14"><path d="M420 2130h750l-80 170H500z" fill="#6c3d36"/><path d="M450 1980h700l-80 150H500z" fill="#29453f"/><path d="M2420 2110h700l-80 190H2490z" fill="#704132"/><path d="M2380 1970h760l-70 140H2440z" fill="#29453f"/></g>
+<text x="1800" y="2280" text-anchor="middle" font-family="Georgia,serif" font-size="55" letter-spacing="14" fill="#d8c39b">THE SECRET LIBRARY</text>
+</svg>
