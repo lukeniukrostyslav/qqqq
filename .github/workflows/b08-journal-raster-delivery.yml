@@ -1,0 +1,98 @@
+name: B08 Journal Raster Delivery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'proof/B08_JP_MASTERS/**'
+      - '.github/workflows/b08-journal-raster-delivery.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rasterize:
+    if: \${{ !startsWith(github.event.head_commit.message, 'chore(B08): generate journal JPGs') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install raster tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+          python3 -m pip install --upgrade pillow
+
+      - name: Render US Letter and A4
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/US_LETTER
+          mkdir -p delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/A4
+          mkdir -p /tmp/b08_png
+
+          for svg in proof/B08_JP_MASTERS/SL_JP_*.svg; do
+            base="$(basename "$svg" .svg)"
+            rsvg-convert --width=2550 --height=3300 --keep-aspect-ratio --background-color='#E9E0CA' --output="/tmp/b08_png/\${base}_US_LETTER.png" "$svg"
+            rsvg-convert --width=2480 --height=3508 --keep-aspect-ratio --background-color='#E9E0CA' --output="/tmp/b08_png/\${base}_A4.png" "$svg"
+          done
+
+      - name: Convert to JPG and set 300 DPI metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          src = Path("/tmp/b08_png")
+          letter = Path("delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/US_LETTER")
+          a4 = Path("delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/A4")
+          for p in sorted(src.glob("*.png")):
+              im = Image.open(p).convert("RGB")
+              if p.name.endswith("_US_LETTER.png"):
+                  expected = (2550, 3300)
+                  out = letter / p.with_suffix(".jpg").name
+              else:
+                  expected = (2480, 3508)
+                  out = a4 / p.with_suffix(".jpg").name
+              if im.size != expected:
+                  raise SystemExit(f"Unexpected size: {p} -> {im.size}, expected {expected}")
+              im.save(out, "JPEG", quality=88, optimize=True, progressive=True, dpi=(300, 300), subsampling=0)
+          PY
+
+      - name: Repository-level QA
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          roots = [
+              (Path("delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/US_LETTER"), (2550, 3300)),
+              (Path("delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/A4"), (2480, 3508)),
+          ]
+          total = 0
+          for root, expected in roots:
+              files = sorted(root.glob("*.jpg"))
+              if len(files) != 20:
+                  raise SystemExit(f"{root}: expected 20 JPG files, found {len(files)}")
+              for p in files:
+                  im = Image.open(p)
+                  if im.size != expected: raise SystemExit(f"{p}: wrong size {im.size}")
+                  if im.mode != "RGB": raise SystemExit(f"{p}: wrong mode {im.mode}")
+                  dpi = im.info.get("dpi")
+                  if not dpi or abs(dpi[0]-300) > 1 or abs(dpi[1]-300) > 1: raise SystemExit(f"{p}: wrong DPI {dpi}")
+                  if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
+                  total += 1
+          if total != 40: raise SystemExit(f"Expected 40 total JPGs, found {total}")
+          print("B08 journal raster QA PASS: 40/40")
+          PY
+
+      - name: Commit final binary delivery
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES
+          if git diff --cached --quiet; then
+            echo "No binary changes to commit."
+            exit 0
+          fi
+          git commit -m "chore(B08): generate journal JPGs"
+          git push
