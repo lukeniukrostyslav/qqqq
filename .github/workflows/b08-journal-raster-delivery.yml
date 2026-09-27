@@ -25,6 +25,19 @@ jobs:
           sudo apt-get install -y librsvg2-bin
           python3 -m pip install --upgrade pillow
 
+      - name: Validate journal masters
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          masters = sorted(Path("proof/B08_JP_MASTERS").glob("SL_JP_*.svg"))
+          if len(masters) != 20:
+              raise SystemExit(f"Expected 20 journal masters, found {len(masters)}")
+          for p in masters:
+              ET.parse(p)
+          print("B08 source master preflight PASS: 20/20 valid SVG files")
+          PY
+
       - name: Render US Letter and A4
         shell: bash
         run: |
@@ -33,11 +46,15 @@ jobs:
           mkdir -p delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES/A4
           mkdir -p /tmp/b08_png
 
+          count=0
           for svg in proof/B08_JP_MASTERS/SL_JP_*.svg; do
             base="$(basename "$svg" .svg)"
+            count=$((count + 1))
+            echo "Rendering $base"
             rsvg-convert --width=2550 --height=3300 --background-color='#E9E0CA' --output="/tmp/b08_png/${base}_US_LETTER.png" "$svg"
             rsvg-convert --width=2480 --height=3508 --background-color='#E9E0CA' --output="/tmp/b08_png/${base}_A4.png" "$svg"
           done
+          test "$count" -eq 20
 
       - name: Convert to JPG and set 300 DPI metadata
         run: |
