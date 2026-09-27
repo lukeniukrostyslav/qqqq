@@ -4,7 +4,7 @@
 - Journal concepts generated locally: 20/20
 - Raster variants generated locally: 40/40
 - Local technical QA: PASS
-- GitHub SVG masters: 10/20 in this commit; remaining masters follow in the next commit
+- GitHub SVG masters: 20/20 committed
 - Commercially approved assets: 0/90
 - B08 progress: **0%**
 
