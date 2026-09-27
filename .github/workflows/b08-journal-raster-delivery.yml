@@ -1,4 +1,5 @@
 name: B08 Journal Raster Delivery
+# B08 deterministic delivery verification
 
 on:
   schedule:
