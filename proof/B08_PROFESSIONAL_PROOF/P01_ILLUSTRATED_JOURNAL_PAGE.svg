@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2550" height="3300" viewBox="0 0 2550 3300">
+<defs>
+<linearGradient id="paper" x2="0" y2="1"><stop stop-color="#d7c19a"/><stop offset=".48" stop-color="#e5d3ad"/><stop offset="1" stop-color="#c8ae82"/></linearGradient>
+<radialGradient id="lamp"><stop stop-color="#f6e5aa" stop-opacity=".65"/><stop offset="1" stop-color="#f6e5aa" stop-opacity="0"/></radialGradient>
+<filter id="shadow"><feGaussianBlur stdDeviation="14"/></filter>
+<pattern id="grain" width="70" height="70" patternUnits="userSpaceOnUse"><circle cx="12" cy="20" r="2" fill="#5b4735" opacity=".09"/><circle cx="50" cy="54" r="1.5" fill="#5b4735" opacity=".08"/></pattern>
+</defs>
+<rect width="2550" height="3300" fill="url(#paper)"/><rect width="2550" height="3300" fill="url(#grain)"/>
+<rect x="95" y="95" width="2360" height="3110" fill="none" stroke="#33251c" stroke-width="14"/>
+<rect x="125" y="125" width="2300" height="3050" fill="none" stroke="#765a3e" stroke-width="5"/>
+<!-- ornamental corners -->
+<g fill="none" stroke="#4d3828" stroke-width="8"><path d="M150 430V180H400M2150 180H2400V430M150 2870V3120H400M2150 3120H2400V2870"/></g>
+<text x="1275" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="105" letter-spacing="15" fill="#302219">SECRET LIBRARY</text>
+<text x="1275" y="395" text-anchor="middle" font-family="Georgia,serif" font-size="43" letter-spacing="7" fill="#70563e">ARCHIVE JOURNAL · VOLUME I</text>
+<path d="M300 455H2250" stroke="#6b5038" stroke-width="5"/>
+
+<!-- left illustration panel -->
+<rect x="250" y="570" width="570" height="1960" fill="#b79b70" opacity=".42" stroke="#5d4632" stroke-width="6"/>
+<path d="M285 800 Q535 570 785 800V1700H285Z" fill="#5b4637" opacity=".55"/>
+<path d="M330 820 Q535 650 740 820V1660H330Z" fill="#9c825d"/>
+<path d="M365 850 Q535 710 705 850V1600H365Z" fill="#30453d"/>
+<path d="M410 900 Q535 790 660 900V1570H410Z" fill="#d4bd8d"/>
+<path d="M285 1710H785" stroke="#4d3828" stroke-width="16"/>
+<!-- desk -->
+<path d="M315 2010H755L700 2140H370Z" fill="#563b29"/><path d="M355 2140V2460M715 2140V2460" stroke="#3d2a1d" stroke-width="28"/>
+<rect x="430" y="1925" width="260" height="95" fill="#3c2c22"/><path d="M455 1940h210v65H455z" fill="#b58e5a"/>
+<!-- books -->
+<g stroke="#33251c" stroke-width="5"><rect x="300" y="2470" width="440" height="48" fill="#603d2d"/><rect x="330" y="2418" width="390" height="52" fill="#2f4a45"/><rect x="365" y="2360" width="330" height="58" fill="#7b3f39"/></g>
+<!-- candle -->
+<ellipse cx="635" cy="1940" rx="190" ry="190" fill="url(#lamp)"/><rect x="615" y="1795" width="38" height="145" fill="#e2cfaa"/><path d="M634 1788q-28-45 0-82q28 37 0 82" fill="#b45c32"/>
+<!-- feather -->
+<path d="M520 1930q-150-300 40-420q-35 240-40 420Z" fill="#27251f"/><path d="M520 1930L565 1505" stroke="#8b6a48" stroke-width="8"/>
+<!-- writing zone -->
+<rect x="900" y="570" width="1380" height="1960" fill="#ead9b8" opacity=".66" stroke="#6c5139" stroke-width="6"/>
+<text x="970" y="700" font-family="Georgia,serif" font-size="70" fill="#34261c" letter-spacing="4">CATALOGUE ENTRY</text>
+<text x="970" y="770" font-family="Georgia,serif" font-size="31" fill="#765a3e">TITLE · AUTHOR · DATE · NOTES</text>
+<g stroke="#947957" stroke-width="4" opacity=".72"><path d="M970 875H2210M970 1015H2210M970 1155H2210M970 1295H2210M970 1435H2210M970 1575H2210M970 1715H2210M970 1855H2210M970 1995H2210M970 2135H2210M970 2275H2210"/></g>
+<rect x="970" y="2350" width="560" height="115" fill="none" stroke="#72553a" stroke-width="4"/><text x="1010" y="2422" font-family="Georgia,serif" font-size="31" fill="#59432f">ACCESSION · SL / 001</text>
+<circle cx="2070" cy="2430" r="100" fill="none" stroke="#704b43" stroke-width="9"/><text x="2070" y="2418" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#704b43">PRIVATE</text><text x="2070" y="2455" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#704b43">ARCHIVE</text>
+<text x="1275" y="2900" text-anchor="middle" font-family="Georgia,serif" font-size="38" fill="#5d4632" letter-spacing="6">A PLACE FOR QUIET DISCOVERY</text>
+<path d="M500 2980Q1275 2870 2050 2980" fill="none" stroke="#6c5139" stroke-width="4"/>
+</svg>
