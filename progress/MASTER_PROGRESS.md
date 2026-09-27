@@ -12,7 +12,7 @@
 | B05 Audience selection | Complete | 100% |
 | B06 First SKU specification | Complete | 100% |
 | B07 Production pipeline | Complete | 100% |
-| B08 Asset creation | In progress — journal-page batch approved; remaining 70 assets pending | 22.22% |
+| B08 Asset creation | In progress — journal pages + digital papers approved; 55 assets remain | 38.89% |
 | B09 Product QA | Not started | 0% |
 | B10 Marketplace packaging | Not started | 0% |
 | B11 First commercial listing | Not started | 0% |
@@ -47,4 +47,4 @@ Current product direction:
 Current first SKU:
 **SECRET LIBRARY — Dark Academia Journaling Kit**.
 
-B07 is complete and frozen. B08 is in progress. The journal-page batch is now approved: 20 concepts / 40 delivery JPGs (20 A4 + 20 US Letter) are present in GitHub. The remaining 70 assets are still pending. B09 remains separate: production assets must not be marked QA-complete merely because the pipeline exists.
+B07 is complete and frozen. B08 is in progress. The journal-page batch and digital-paper batch are now approved: 35 concepts / 55 delivery JPGs are present in GitHub (20 journal concepts with 40 size variants + 15 digital-paper concepts). The remaining 55 assets are still pending. B09 remains separate: production assets must not be marked QA-complete merely because the pipeline exists.
