@@ -39,3 +39,25 @@ Current approved commercial assets: 0/90.
 The 20 journal-page masters are complete, and local raster QA previously passed 40/40 files. However, B08 progress is not raised until the generated 40 JPG binaries are confirmed in the GitHub repository and the delivery gate is rechecked.
 
 Next gate: verify GitHub delivery presence -> verify workflow QA evidence -> approve 20 journal-page concepts -> update B08 to 20/90 = 22.22% only after the gate passes.
+
+## 2026-09-27 workflow dispatch verification
+
+Additional official GitHub documentation check:
+- A workflow can be run manually only when the workflow file includes the `workflow_dispatch` trigger.
+- The workflow file must exist on the repository's default branch for the manual trigger to be available.
+- GitHub documents both the Actions UI and REST API as supported ways to dispatch a workflow.
+- A workflow dispatch requires appropriate write access.
+
+Sources:
+- https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow
+- https://docs.github.com/en/rest/actions/workflows
+
+Repository change:
+- Added `workflow_dispatch:` to `.github/workflows/b08-journal-raster-delivery.yml`.
+- Added an Actions artifact upload step so a successful run leaves an independently inspectable verification artifact.
+- Commit: `3d3f3d56f1c5c0b863ffb1a94b7884039def7a07`.
+
+Current gate remains CLOSED:
+- Expected GitHub JPG delivery files still return HTTP 404 through the GitHub contents API.
+- Therefore approved commercial assets remain 0/90 and B08 remains 0%.
+- No progress percentage is raised until the 40 JPG binaries are actually present and their technical QA is verified from the repository.
