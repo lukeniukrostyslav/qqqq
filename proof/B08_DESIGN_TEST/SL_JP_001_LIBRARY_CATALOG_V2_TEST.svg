@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2550" height="3300" viewBox="0 0 2550 3300">
+<defs>
+  <pattern id="paper" width="90" height="90" patternUnits="userSpaceOnUse">
+    <circle cx="12" cy="18" r="2" fill="#6d5a46" opacity=".10"/>
+    <circle cx="66" cy="55" r="1.5" fill="#6d5a46" opacity=".08"/>
+    <path d="M0 72H90" stroke="#6d5a46" stroke-width="1" opacity=".035"/>
+  </pattern>
+</defs>
+<rect width="2550" height="3300" fill="#d8c7a5"/>
+<rect width="2550" height="3300" fill="url(#paper)"/>
+<rect x="125" y="125" width="2300" height="3050" rx="10" fill="none" stroke="#332d28" stroke-width="10"/>
+<rect x="175" y="175" width="2200" height="2950" rx="7" fill="none" stroke="#8b7861" stroke-width="3" opacity=".75"/>
+
+<text x="300" y="410" font-family="Georgia,serif" font-size="148" fill="#332d28" letter-spacing="12">SECRET LIBRARY</text>
+<text x="302" y="505" font-family="Georgia,serif" font-size="54" fill="#665849" letter-spacing="5">PRIVATE CATALOGUE / VOLUME I</text>
+<path d="M300 555H2250" stroke="#665849" stroke-width="5"/>
+<path d="M300 575H2250" stroke="#8b7861" stroke-width="2"/>
+
+<!-- small archival seal -->
+<circle cx="2140" cy="365" r="112" fill="none" stroke="#665849" stroke-width="6"/>
+<circle cx="2140" cy="365" r="88" fill="none" stroke="#8b7861" stroke-width="3"/>
+<path d="M2095 365h90M2140 320v90" stroke="#665849" stroke-width="4"/>
+<text x="2140" y="300" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#665849">ARCHIVE</text>
+<text x="2140" y="445" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#665849">S.L. / 001</text>
+
+<text x="320" y="760" font-family="Georgia,serif" font-size="78" fill="#332d28" letter-spacing="3">CATALOGUE ENTRY</text>
+<text x="320" y="825" font-family="Georgia,serif" font-size="34" fill="#665849">RECORD / TITLE / AUTHOR / NOTES</text>
+
+<!-- writing area -->
+<rect x="300" y="885" width="1945" height="1510" fill="#e3d4b8" opacity=".30" stroke="#8b7861" stroke-width="4"/>
+<path d="M340 1005H2205M340 1135H2205M340 1265H2205M340 1395H2205M340 1525H2205M340 1655H2205M340 1785H2205M340 1915H2205M340 2045H2205M340 2175H2205M340 2305H2205" stroke="#8b7861" stroke-width="4" opacity=".75"/>
+
+<!-- subtle bookshelf silhouette -->
+<path d="M330 2445H2215" stroke="#665849" stroke-width="6"/>
+<path d="M390 2445V2525H455V2445M470 2445V2525H535V2445M550 2445V2525H615V2445M635 2445V2525H700V2445M720 2445V2525H785V2445M805 2445V2525H870V2445" fill="none" stroke="#665849" stroke-width="5" opacity=".55"/>
+
+<!-- archival stamp block -->
+<rect x="300" y="2595" width="900" height="390" fill="none" stroke="#665849" stroke-width="6"/>
+<text x="350" y="2680" font-family="Georgia,serif" font-size="38" fill="#332d28" letter-spacing="4">READING ROOM</text>
+<text x="350" y="2750" font-family="Georgia,serif" font-size="30" fill="#665849">ACCESSION NO.  SL / 001</text>
+<text x="350" y="2815" font-family="Georgia,serif" font-size="30" fill="#665849">STATUS: PRIVATE COLLECTION</text>
+<text x="350" y="2880" font-family="Georgia,serif" font-size="30" fill="#665849">RETURN TO ARCHIVE</text>
+
+<!-- tiny decorative botanical line -->
+<path d="M1350 2925 C1500 2840 1640 2920 1770 2845 C1880 2780 2010 2850 2190 2760" fill="none" stroke="#665849" stroke-width="5" opacity=".6"/>
+<path d="M1510 2890l-35-55M1600 2885l20-60M1740 2870l-20-55M1900 2830l25-55M2070 2795l-20-50" stroke="#665849" stroke-width="4" opacity=".55"/>
+
+<text x="2200" y="3070" text-anchor="end" font-family="Georgia,serif" font-size="27" fill="#665849" letter-spacing="3">KEEP PRIVATE • ARCHIVE COPY</text>
+</svg>
