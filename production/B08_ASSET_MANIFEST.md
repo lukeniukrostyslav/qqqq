@@ -29,7 +29,7 @@ No asset is counted merely because it is planned.
 
 ## Status legend
 
-Current proof status: **55 APPROVED assets / 90 planned**
+Current proof status: **75 APPROVED assets / 90 planned**
 
 - PLANNED — specification exists, asset not created.
 - DRAFT — first version created, not approved.
@@ -87,7 +87,7 @@ library card, catalogue slip, accession label, envelope, ticket, archive note, b
 
 | ID range | Count | Status |
 |---|---:|---|
-| SL_PNG_001–020 | 20 | PLANNED |
+| SL_PNG_001–020 | 20 | APPROVED |
 
 Initial motifs:
 antique key, closed book, stacked books, ink bottle, quill, candle, candleholder, antique frame, magnifying glass, botanical specimen, pressed leaf, raven silhouette, old clock, brass lock, ribbon, wax-seal-style ornament, reading glasses, compass, small lantern, book stack with bookmark.
@@ -144,3 +144,16 @@ Verification result:
 A previous run `36340276475` failed because the newly created ephemera masters had not yet been attached to the main branch when the workflow started. This was a repository sequencing issue; the corrected run `36340334073` passed all gates and pushed the delivery successfully.
 
 The 20 ephemera concepts are therefore APPROVED for B08 progress purposes.
+
+
+## B08 decorative PNG verification
+
+GitHub Actions run `36340693552` completed successfully.
+
+- 20/20 decorative PNG SVG masters passed XML preflight.
+- 20/20 decorative PNGs rendered at 3600×3600.
+- Transparent PNG QA passed: alpha channel present, transparent canvas verified, non-empty artwork verified.
+- Full raster QA passed for 40 journal JPGs + 15 digital-paper JPGs + 20 ephemera PNGs + 20 decorative PNGs.
+- Delivery commit: `12f2d77`.
+
+The decorative PNG batch is therefore APPROVED for B08 progress purposes.
