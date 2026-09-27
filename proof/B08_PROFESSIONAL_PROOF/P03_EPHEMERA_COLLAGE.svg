@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="2400" viewBox="0 0 3600 2400">
+<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#d9c5a0"/><stop offset="1" stop-color="#bda17a"/></linearGradient><filter id="s"><feDropShadow dx="12" dy="16" stdDeviation="10" flood-opacity=".28"/></filter></defs>
+<rect width="3600" height="2400" fill="url(#bg)"/>
+<text x="180" y="180" font-family="Georgia,serif" font-size="92" letter-spacing="12" fill="#33251c">SECRET LIBRARY · EPHEMERA</text>
+<text x="180" y="250" font-family="Georgia,serif" font-size="32" fill="#76583d">ORIGINAL ARCHIVAL COLLECTION · PROOF SHEET</text>
+<!-- cards -->
+<g filter="url(#s)">
+<rect x="180" y="390" width="850" height="530" rx="8" fill="#e6d4ad" stroke="#604630" stroke-width="10"/>
+<text x="605" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="58" fill="#34261d">LIBRARY CARD</text><path d="M280 570H930M280 660H930M280 750H930" stroke="#866947" stroke-width="4"/><text x="300" y="850" font-family="Georgia,serif" font-size="28" fill="#6d5138">BORROWER / DATE / NOTES</text>
+<rect x="1160" y="390" width="650" height="530" fill="#dcc69d" stroke="#604630" stroke-width="10"/><text x="1485" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="50" fill="#34261d">EX LIBRIS</text><path d="M1280 600q205-180 410 0v230h-410z" fill="#39433a"/><path d="M1320 800l80-180 80 180 80-180 80 180" fill="none" stroke="#c8ae77" stroke-width="16"/><text x="1485" y="875" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#e1cc9f">PRIVATE COLLECTION</text>
+<rect x="1950" y="390" width="500" height="530" fill="#ead8b3" stroke="#604630" stroke-width="10"/><path d="M2050 760q150-260 300 0" fill="none" stroke="#6e4039" stroke-width="18"/><circle cx="2200" cy="590" r="115" fill="#7d463d" opacity=".9"/><path d="M2140 590h120M2200 530v120" stroke="#d9bf88" stroke-width="8"/><text x="2200" y="850" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#6d5138">ARCHIVE SEAL</text>
+<!-- bookplate -->
+<rect x="2570" y="390" width="800" height="530" fill="#29433d" stroke="#30251c" stroke-width="14"/><rect x="2630" y="450" width="680" height="410" fill="none" stroke="#c9ae72" stroke-width="6"/><text x="2970" y="590" text-anchor="middle" font-family="Georgia,serif" font-size="60" fill="#d9c18b">EX LIBRIS</text><path d="M2810 670q160-120 320 0q-160 130-320 0Z" fill="none" stroke="#c9ae72" stroke-width="8"/><text x="2970" y="790" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#d9c18b">SECRET LIBRARY</text>
+</g>
+<!-- lower objects -->
+<g filter="url(#s)" stroke="#4a3324" stroke-width="9">
+<rect x="180" y="1120" width="650" height="420" fill="#e0c99f"/><text x="505" y="1220" text-anchor="middle" font-family="Georgia,serif" font-size="46" fill="#34261d">RESEARCH NOTE</text><path d="M250 1300H770M250 1380H770M250 1460H770" stroke="#8b6b48" stroke-width="4"/>
+<path d="M980 1490q80-400 160-700q120 260 10 700Z" fill="#252a25"/><path d="M1140 790L1140 1530" stroke="#916f48" stroke-width="12"/>
+<path d="M1400 1420q180-260 360 0l-45 230h-270z" fill="#5c3c29"/><rect x="1460" y="1370" width="240" height="60" fill="#d7bf8e"/>
+<path d="M1980 1520q170-360 350 0" fill="none" stroke="#5c3c29" stroke-width="35"/><circle cx="2155" cy="1520" r="92" fill="#d5bd86"/>
+<rect x="2490" y="1110" width="900" height="430" fill="#ead8b3"/><text x="2940" y="1220" text-anchor="middle" font-family="Georgia,serif" font-size="48" fill="#34261d">ARCHIVE FRAGMENT</text><path d="M2590 1300H3290M2590 1380H3290M2590 1460H3290" stroke="#8b6b48" stroke-width="4"/>
+</g>
+<text x="180" y="1800" font-family="Georgia,serif" font-size="44" fill="#5f4632">TAGS · TICKETS · BOOKPLATES · KEYS · BOTANICALS · MANUSCRIPT FRAGMENTS</text>
+<g filter="url(#s)">
+<path d="M250 1950h390v300H250z" fill="#c8aa78"/><text x="445" y="2100" text-anchor="middle" font-family="Georgia,serif" font-size="36" fill="#33251c">CHAPTER</text><text x="445" y="2160" text-anchor="middle" font-family="Georgia,serif" font-size="25" fill="#6d5138">NO. 07</text>
+<path d="M820 1950h390v300H820z" fill="#6f4039"/><text x="1015" y="2100" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#ead7ae">READING TICKET</text><text x="1015" y="2160" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#ead7ae">NO. 78531</text>
+<path d="M1390 1900q190-90 380 0v350h-380z" fill="#314b45"/><text x="1580" y="2100" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#d9c18a">PRIVATE TAG</text>
+<path d="M1980 1950q110-100 220 0l-45 250h-130z" fill="#a67d47"/><circle cx="2090" cy="1985" r="16" fill="#33251c"/>
+</g>
+<text x="1800" y="2330" text-anchor="middle" font-family="Georgia,serif" font-size="34" letter-spacing="7" fill="#6a4e37">ORIGINAL VISUAL PROOF · NOT YET PART OF B08 APPROVED INVENTORY</text>
+</svg>
