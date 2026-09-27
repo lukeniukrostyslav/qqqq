@@ -12,7 +12,7 @@
 | B05 Audience selection | Complete | 100% |
 | B06 First SKU specification | Complete | 100% |
 | B07 Production pipeline | Complete | 100% |
-| B08 Asset creation | Not started | 0% |
+| B08 Asset creation | In progress — production manifest/workflow complete; assets not yet approved | 0% |
 | B09 Product QA | Not started | 0% |
 | B10 Marketplace packaging | Not started | 0% |
 | B11 First commercial listing | Not started | 0% |
