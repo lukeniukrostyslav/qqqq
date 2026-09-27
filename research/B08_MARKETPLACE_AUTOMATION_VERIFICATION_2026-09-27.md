@@ -100,3 +100,12 @@ Official GitHub documentation confirms that commands inside run steps are proces
 Source checked: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables
 
 Current B08 gate remains CLOSED until a successful Actions run and the resulting 40 JPG binaries are verified in the repository.
+
+
+## 2026-09-27 confirmed journal-page delivery
+
+A GitHub Actions bot commit was found: `ab70e7c1ad3386b4f6313c51d6c72d7a2489a662`, message `chore(B08): generate journal JPGs`. Its commit payload contains exactly 40 added JPG files under the journal-page delivery tree: 20 A4 and 20 US Letter. The commit's parent is the corrected workflow commit `3cf1b0a9dfd2bb6b9425834c04b62e4440a25679`.
+
+Because the workflow's repository-level QA step precedes the binary commit step, creation of this generated delivery commit is evidence that the 40-file count, dimensions, RGB mode, 300 DPI metadata, and filename-length checks passed in that run.
+
+B08 journal-page gate: OPEN. Approved concepts: 20/90 = 22.22%. Remaining B08 production: 70 assets.
