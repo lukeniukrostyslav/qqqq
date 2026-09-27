@@ -173,4 +173,6 @@ jobs:
             exit 0
           fi
           git commit -m "chore(B08): generate journal and digital paper JPGs"
+          git fetch origin main
+          git rebase origin/main
           git push
