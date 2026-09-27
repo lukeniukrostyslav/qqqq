@@ -87,3 +87,16 @@ Conclusion:
 The workflow definition is now prepared for deterministic manual execution, but the available GitHub connector in this session does not expose the REST workflow-dispatch action itself. Therefore no claim of a successful Actions run is made until GitHub provides run/artifact/file evidence.
 
 B08 gate remains CLOSED: 0/90 approved commercial assets.
+
+
+## 2026-09-27 workflow failure correction and preflight hardening
+
+The user-visible Actions history showed the recent rasterize job ending with exit code 1. Repository inspection found a concrete shell interpolation defect in the render command: the output paths contained an escaped Bash variable (\\${base}), preventing normal $base expansion. This was corrected in commit 3cf1b0a9dfd2bb6b9425834c04b62e4440a25679.
+
+A second hardening commit adds a source-master preflight: exactly 20 journal SVG masters are required and each is parsed as XML before rasterization. The render loop also counts the 20 inputs and echoes each source name. This reduces the chance of a silent source-count or malformed-SVG failure.
+
+Official GitHub documentation confirms that commands inside run steps are processed by the selected shell and that Bash uses normal $NAME variable syntax on Linux runners. This supports the correction above.
+
+Source checked: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables
+
+Current B08 gate remains CLOSED until a successful Actions run and the resulting 40 JPG binaries are verified in the repository.
