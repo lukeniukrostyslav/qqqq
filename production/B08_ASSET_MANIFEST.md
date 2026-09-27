@@ -29,6 +29,8 @@ No asset is counted merely because it is planned.
 
 ## Status legend
 
+Current proof status: **DRAFT — 0 approved assets**
+
 - PLANNED — specification exists, asset not created.
 - DRAFT — first version created, not approved.
 - REVISION — failed a check and is being corrected.
