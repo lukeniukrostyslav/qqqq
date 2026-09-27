@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - 'proof/B08_JP_MASTERS/**'
+      - 'proof/B08_DP_MASTERS/**'
       - '.github/workflows/b08-journal-raster-delivery.yml'
 
 permissions:
@@ -38,6 +39,19 @@ jobs:
           print("B08 source master preflight PASS: 20/20 valid SVG files")
           PY
 
+      - name: Validate digital paper masters
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          masters = sorted(Path("proof/B08_DP_MASTERS").glob("SL_DP_*.svg"))
+          if len(masters) != 15:
+              raise SystemExit(f"Expected 15 digital paper masters, found {len(masters)}")
+          for p in masters:
+              ET.parse(p)
+          print("B08 digital paper master preflight PASS: 15/15 valid SVG files")
+          PY
+
       - name: Render US Letter and A4
         shell: bash
         run: |
@@ -56,7 +70,22 @@ jobs:
           done
           test "$count" -eq 20
 
-      - name: Convert to JPG and set 300 DPI metadata
+      - name: Render digital papers
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS
+          mkdir -p /tmp/b08_dp_png
+          count=0
+          for svg in proof/B08_DP_MASTERS/SL_DP_*.svg; do
+            base="$(basename "$svg" .svg)"
+            count=$((count + 1))
+            echo "Rendering $base"
+            rsvg-convert --width=3600 --height=3600 --background-color='#E9E0CA' --output="/tmp/b08_dp_png/${base}.png" "$svg"
+          done
+          test "$count" -eq 15
+
+      - name: Convert journal pages to JPG and set 300 DPI metadata
         run: |
           python3 - <<'PY'
           from pathlib import Path
@@ -75,6 +104,20 @@ jobs:
               if im.size != expected:
                   raise SystemExit(f"Unexpected size: {p} -> {im.size}, expected {expected}")
               im.save(out, "JPEG", quality=88, optimize=True, progressive=True, dpi=(300, 300), subsampling=0)
+          PY
+
+      - name: Convert digital papers to JPG and set 300 DPI metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          src = Path("/tmp/b08_dp_png")
+          outdir = Path("delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS")
+          for p in sorted(src.glob("*.png")):
+              im = Image.open(p).convert("RGB")
+              if im.size != (3600, 3600):
+                  raise SystemExit(f"Unexpected digital paper size: {p} -> {im.size}")
+              im.save(outdir / p.with_suffix(".jpg").name, "JPEG", quality=90, optimize=True, progressive=True, dpi=(300, 300), subsampling=0)
           PY
 
       - name: Repository-level QA
@@ -100,24 +143,34 @@ jobs:
                   if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
                   total += 1
           if total != 40: raise SystemExit(f"Expected 40 total JPGs, found {total}")
-          print("B08 journal raster QA PASS: 40/40")
+          dp = sorted(Path("delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS").glob("*.jpg"))
+          if len(dp) != 15:
+              raise SystemExit(f"Digital papers: expected 15 JPG files, found {len(dp)}")
+          for p in dp:
+              im = Image.open(p)
+              if im.size != (3600, 3600): raise SystemExit(f"{p}: wrong size {im.size}")
+              if im.mode != "RGB": raise SystemExit(f"{p}: wrong mode {im.mode}")
+              dpi = im.info.get("dpi")
+              if not dpi or abs(dpi[0]-300) > 1 or abs(dpi[1]-300) > 1: raise SystemExit(f"{p}: wrong DPI {dpi}")
+              if len(p.name) > 70: raise SystemExit(f"{p}: filename exceeds 70 characters")
+          print("B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs")
           PY
 
       - name: Upload verification artifact
         uses: actions/upload-artifact@v4
         with:
           name: b08-journal-pages-verification
-          path: delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES
+          path: delivery/SECRET_LIBRARY_KIT
           if-no-files-found: error
 
       - name: Commit final binary delivery
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES
+          git add delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES delivery/SECRET_LIBRARY_KIT/02_DIGITAL_PAPERS
           if git diff --cached --quiet; then
             echo "No binary changes to commit."
             exit 0
           fi
-          git commit -m "chore(B08): generate journal JPGs"
+          git commit -m "chore(B08): generate journal and digital paper JPGs"
           git push
