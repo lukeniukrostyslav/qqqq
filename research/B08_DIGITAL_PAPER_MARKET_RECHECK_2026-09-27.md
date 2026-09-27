@@ -46,3 +46,8 @@ Research does not increase B08 progress by itself. The 15 digital-paper concepts
 The first digital-paper-capable run reached and passed the full technical QA gate: the log reports **40 journal JPGs + 15 digital paper JPGs**, and the artifact upload completed with 55 files. The final failure occurred only at the Git push step because another repository commit had advanced `main` while the workflow was running. The generated local commit therefore could not fast-forward the remote branch.
 
 This was a repository-concurrency issue, not an asset-rendering or QA failure. The workflow was hardened in commit `e2b9b920db148ea8a68ee56856841204091a545b` to fetch `origin/main`, rebase the generated delivery commit onto the current main, and then push. The B08 gate remains closed until the rebased generated commit is actually present in GitHub.
+
+
+## Final delivery verification
+
+The hardened workflow run `36339787927` completed successfully. Its job log explicitly reports `B08 raster QA PASS: 40 journal JPGs + 15 digital paper JPGs`, then uploads a 55-file artifact and successfully pushes delivery commit `60089bf1e3f9185cfc7439d35414c8be6a3a7867`. The digital-paper batch is therefore approved for B08 progress purposes: 15/90 concepts in this category, bringing total approved B08 concepts to 35/90 = 38.89%.
