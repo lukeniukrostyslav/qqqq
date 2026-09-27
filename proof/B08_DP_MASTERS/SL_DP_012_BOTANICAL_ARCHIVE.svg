@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="3600" viewBox="0 0 3600 3600">
+<rect width="3600" height="3600" fill="#C4C5AE"/>
+<rect x="95" y="95" width="3410" height="3410" rx="18" fill="none" stroke="#4F5548" stroke-opacity=".18" stroke-width="12"/>
+<path d="M520 3050 C700 2450 650 1700 1150 980 C1380 650 1800 610 2050 930 C2360 1320 2360 1880 3000 2550" fill="none" stroke="#4F5548" stroke-opacity=".16" stroke-width="12"/><path d="M800 2900 C980 2450 1220 2140 1560 1800 C1880 1480 2240 1320 2700 1030" fill="none" stroke="#4F5548" stroke-opacity=".13" stroke-width="8"/>
+<path d="M170 170h260M170 170v260M3430 170h-260M3430 170v260M170 3430h260M170 3430v-260M3430 3430h-260M3430 3430v-260" fill="none" stroke="#4F5548" stroke-opacity=".22" stroke-width="10"/>
+<text x="180" y="3360" font-family="Georgia,DejaVu Serif,serif" font-size="30" letter-spacing="4" fill="#4F5548" opacity=".30">SECRET LIBRARY • 012 • BOTANICAL ARCHIVE</text>
+</svg>

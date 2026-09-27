@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3600" height="3600" viewBox="0 0 3600 3600">
+<rect width="3600" height="3600" fill="#6B4A4B"/>
+<rect x="95" y="95" width="3410" height="3410" rx="18" fill="none" stroke="#E0D2B5" stroke-opacity=".18" stroke-width="12"/>
+<rect x="170" y="170" width="3260" height="3260" fill="none" stroke="#E0D2B5" stroke-opacity=".18" stroke-width="28"/><rect x="230" y="230" width="3140" height="3140" fill="none" stroke="#E0D2B5" stroke-opacity=".10" stroke-width="8"/>
+<path d="M170 170h260M170 170v260M3430 170h-260M3430 170v260M170 3430h260M170 3430v-260M3430 3430h-260M3430 3430v-260" fill="none" stroke="#E0D2B5" stroke-opacity=".22" stroke-width="10"/>
+<text x="180" y="3360" font-family="Georgia,DejaVu Serif,serif" font-size="30" letter-spacing="4" fill="#E0D2B5" opacity=".30">SECRET LIBRARY • 007 • MUTED BURGUNDY ACCENT</text>
+</svg>
