@@ -61,3 +61,29 @@ Current gate remains CLOSED:
 - Expected GitHub JPG delivery files still return HTTP 404 through the GitHub contents API.
 - Therefore approved commercial assets remain 0/90 and B08 remains 0%.
 - No progress percentage is raised until the 40 JPG binaries are actually present and their technical QA is verified from the repository.
+
+## 2026-09-27 live GitHub documentation re-check
+
+Current official GitHub documentation confirms:
+- `workflow_dispatch` exposes the manual **Run workflow** control when the workflow file is on the default branch.
+- A manual workflow can be started from the Actions UI, GitHub CLI, or the REST workflow-dispatch endpoint.
+- GitHub's current documentation also confirms that events generated using `GITHUB_TOKEN` do not create new workflow runs, except `workflow_dispatch` and `repository_dispatch`.
+- Workflow execution policies can also restrict which actors/events are allowed to run Actions.
+
+Sources checked:
+- https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow
+- https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+- https://docs.github.com/en/rest/actions/workflows
+- https://docs.github.com/en/actions/concepts/about-actions-policies
+- https://docs.github.com/en/enterprise-cloud@latest/actions/concepts/security/github_token
+
+Current repository evidence:
+- The B08 workflow now contains `workflow_dispatch`.
+- A controlled push was made to `proof/B08_JP_MASTERS/SL_JP_020_AGED_WRITING_PAGE.svg` to exercise the configured `push` trigger.
+- No Actions-generated commit has appeared after that trigger yet.
+- Expected JPG delivery files still return 404 through the GitHub contents API.
+
+Conclusion:
+The workflow definition is now prepared for deterministic manual execution, but the available GitHub connector in this session does not expose the REST workflow-dispatch action itself. Therefore no claim of a successful Actions run is made until GitHub provides run/artifact/file evidence.
+
+B08 gate remains CLOSED: 0/90 approved commercial assets.
