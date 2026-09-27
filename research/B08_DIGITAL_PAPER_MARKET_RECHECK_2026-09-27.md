@@ -39,3 +39,10 @@ Sources:
 ## Gate
 
 Research does not increase B08 progress by itself. The 15 digital-paper concepts become approved only after the repository contains the generated JPG binaries and the automated technical QA passes.
+
+
+## Workflow verification result
+
+The first digital-paper-capable run reached and passed the full technical QA gate: the log reports **40 journal JPGs + 15 digital paper JPGs**, and the artifact upload completed with 55 files. The final failure occurred only at the Git push step because another repository commit had advanced `main` while the workflow was running. The generated local commit therefore could not fast-forward the remote branch.
+
+This was a repository-concurrency issue, not an asset-rendering or QA failure. The workflow was hardened in commit `e2b9b920db148ea8a68ee56856841204091a545b` to fetch `origin/main`, rebase the generated delivery commit onto the current main, and then push. The B08 gate remains closed until the rebased generated commit is actually present in GitHub.
