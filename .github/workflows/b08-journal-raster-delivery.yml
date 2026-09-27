@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   rasterize:
-    if: \${{ !startsWith(github.event.head_commit.message, 'chore(B08): generate journal JPGs') }}
+    if: ${{ !startsWith(github.event.head_commit.message, 'chore(B08): generate journal JPGs') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -34,7 +34,7 @@ jobs:
 
           for svg in proof/B08_JP_MASTERS/SL_JP_*.svg; do
             base="$(basename "$svg" .svg)"
-            rsvg-convert --width=2550 --height=3300 --keep-aspect-ratio --background-color='#E9E0CA' --output="/tmp/b08_png/\${base}_US_LETTER.png" "$svg"
+            rsvg-convert --width=2550 --height=3300 --background-color='#E9E0CA' --output="/tmp/b08_png/\${base}_US_LETTER.png" "$svg"
             rsvg-convert --width=2480 --height=3508 --keep-aspect-ratio --background-color='#E9E0CA' --output="/tmp/b08_png/\${base}_A4.png" "$svg"
           done
 
