@@ -2,6 +2,7 @@ name: B08 Journal Raster Delivery
 # B08 deterministic delivery verification
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/5 * * * *'
   push:
@@ -86,6 +87,13 @@ jobs:
           if total != 40: raise SystemExit(f"Expected 40 total JPGs, found {total}")
           print("B08 journal raster QA PASS: 40/40")
           PY
+
+      - name: Upload verification artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: b08-journal-pages-verification
+          path: delivery/SECRET_LIBRARY_KIT/01_JOURNAL_PAGES
+          if-no-files-found: error
 
       - name: Commit final binary delivery
         run: |
